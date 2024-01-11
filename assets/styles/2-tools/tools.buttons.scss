@@ -1,0 +1,30 @@
+@mixin button-default() {
+    border: none;
+    margin: 10px;
+    padding: $spacer-10 $spacer-25;
+    background: none;
+    text-decoration: none;
+    background-color: $c-green;
+    font-family: BitterRegular;
+}
+
+@mixin button-rounded() {
+    border: none;
+    margin: 10px;
+    padding: $spacer-10 $spacer-25;
+    background: none;
+    text-decoration: none;
+    background-color: $c-white;
+    font-family: BitterRegular;
+    border-radius: $spacer-10 ;
+}
+
+body {
+    font-family: BitterRegular;
+}
+
+button {
+    @include button-default;
+}
+
+

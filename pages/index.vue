@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index">
 index
   </div>
 </template>
@@ -9,4 +9,13 @@ index
 // definePageMeta({
 //   layout: 'default'
 // })
+
+
 </script>
+
+<style lang="scss">
+
+.index {
+  background-color: $c-bright-white;
+}
+</style>

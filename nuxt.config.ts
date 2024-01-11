@@ -31,7 +31,12 @@ export default defineNuxtConfig({
       // css.preprocessorOptions: https://vitejs.dev/config/shared-options.html#css-preprocessoroptions
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "./assets/styles/1-settings/importer.scss"; '
+          additionalData: `
+          @import "./assets/styles/1-settings/importer.scss"; 
+          @import "./assets/styles/2-tools/importer.scss"; 
+          @import "./assets/styles/3-elements/importer.scss"; 
+          @import "./assets/styles/4-utilities/importer.scss"; 
+          `
         }
       }
     },

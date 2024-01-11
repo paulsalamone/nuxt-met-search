@@ -1,0 +1,26 @@
+@font-face {
+    font-family: BitterRegular;
+    src: local(''),
+    url("#{$static-files-folder}/fonts/Bitter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: BitterItalic;
+    src: local(''),
+        url("#{$static-files-folder}/fonts/Bitter-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: BitterLight;
+    src: local(''),
+        url("#{$static-files-folder}/fonts/Bitter-Light.ttf") format("truetype");
+}
+
+
+@font-face {
+    font-family: BitterBlack;
+    src: local(''),
+        url("#{$static-files-folder}/fonts/Bitter-Black.ttf") format("truetype");
+}
+
+
