@@ -1,0 +1,9 @@
+@import 'reset';
+
+// Basic setup and variables
+@import "1-settings/importer";
+
+
+html {
+    border: 5px solid $c-red;
+} 

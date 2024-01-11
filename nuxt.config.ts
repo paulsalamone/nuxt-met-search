@@ -1,5 +1,5 @@
+import eslintPlugin from 'vite-plugin-eslint'
 import StylelintPlugin from 'vite-plugin-stylelint'
-
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -20,19 +20,35 @@ export default defineNuxtConfig({
     }
     
     },
-  css: ['assets/main.scss'],
+  css: ['assets/styles/main.scss'],
   devtools: { enabled: true },
   devServer: {
     port: 3001,
     url: "http://localhost:3001",
   },
   vite: {
+    css: {
+      // css.preprocessorOptions: https://vitejs.dev/config/shared-options.html#css-preprocessoroptions
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "./assets/styles/1-settings/importer.scss"; '
+        }
+      }
+    },
     plugins: [
+      // eslintPlugin({
+      //   failOnError: false
+      // }),
       StylelintPlugin({
-          include: ['assets/**/*.scss', '**/*.vue', '**/*.scss']})
-    ],
-
-  }
+        // include: ['assets/**/*.scss', '**/*.vue', '**/*.scss']
+      })
+      // StylelintPlugin({
+      //   include: ['assets/**/*.scss', '**/*.vue', '**/*.scss']
+      //   // TODO: decide, if we want this:
+      //   // emitErrorAsWarning: true
+      // })
+    ]
+  },
 
   
 });
