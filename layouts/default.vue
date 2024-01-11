@@ -11,3 +11,11 @@
     <CeFooter />
   </div>
 </template>
+
+
+<style lang="scss" >
+main {
+      background-color: $c-bright-white;
+  padding: 0 $spacer-50;
+}
+</style>

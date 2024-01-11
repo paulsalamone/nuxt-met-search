@@ -1,6 +1,12 @@
 import eslintPlugin from 'vite-plugin-eslint'
 import StylelintPlugin from 'vite-plugin-stylelint'
 
+const publicRuntimeConfig = {
+
+metObjects: 'https://collectionapi.metmuseum.org/public/collection/v1/objects',
+metDepartments: 'https://collectionapi.metmuseum.org/public/collection/v1/departments',
+metSearch: 'https://collectionapi.metmuseum.org/public/collection/v1/search'
+}
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -53,6 +59,10 @@ export default defineNuxtConfig({
       //   // emitErrorAsWarning: true
       // })
     ]
+  },
+  // Runtime Configuration: https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
+  runtimeConfig: {
+    public: publicRuntimeConfig
   },
 
   
