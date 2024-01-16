@@ -3,7 +3,7 @@
 <button>Link 1</button>
 <button>Link 2</button>
 
-  <h3>Met Search</h3>
+  <h1>Met Search</h1>
 
   <button>Link 3</button>
 <button>Link 4</button>

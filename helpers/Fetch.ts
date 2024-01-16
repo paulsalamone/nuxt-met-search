@@ -13,27 +13,39 @@ export async function fetchMetObjects(base: string, objectsUrl: string) {
     }
     return json;
   } catch (error) {
-    // console.error('Error fetching from URL:', url, error);
 
     console.log("Fetch.ts : fetchMetObjects error")
 
-    // throw error;
   }
 }
 
-export async function fetchSingleMetObject(base: string, path: string, id: number){
 
-  const url = `${base}${path}/${id}`;
+export function getRandomId(metObjectIds: any) {
+  const randomIndex = Math.floor(Math.random() * metObjectIds.length) + 1;
+  const randomObjectId = metObjectIds[randomIndex]
+  return randomObjectId
+}
 
-  console.log('+++ path', path)
-  console.log('Fetch.ts: fetchSingleMetObject... :', url)
+export async function fetchSingleMetObject(base: string, path: string, metObjectIds: any){
+
   try {
-    const json = await $fetch(url);
-    return json;
+    let hasPrimarySmallImage = false;
+    let json;
+
+    do {
+      const url = `${base}${path}/${getRandomId(metObjectIds)}`;
+      json = await fetch(url).then((response) => response.json());
+
+      hasPrimarySmallImage = json.primaryImageSmall && json.primaryImageSmall !== '';
+    } while (!hasPrimarySmallImage);
+
+
+    return json
+
+
+
   } catch (error) {
-    // console.error('Fetch.ts: Error fetching from URL:', url, error);
     console.log("Fetch.ts : fetchSingleMetObject error")
-    // throw error;
   }
 
 }

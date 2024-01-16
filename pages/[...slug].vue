@@ -1,15 +1,21 @@
 <template>
 <div>
   <p>PAGE: {{ $route.params.slug ? $route.params.slug : "index" }}</p>
-  <!-- <p>metObjects ref: {{ metObjectsRef?.total ? metObjectsRef.total : "wait..." }}</p> -->
-  <!-- <p>randomObjectsRef: {{ randomObjectsRef?.length ? randomObjectsRef : "waiting..."}}</p> -->
-  <!-- <p>store.randomObjects: {{store.randomObjects ? store.randomObjects : 'objects go here'}}</p>
-  <p>updatedRandomObjectsRef: {{updatedRandomObjectsRef ?  updatedRandomObjectsRef : "getter"}}</p> -->
 
-<ol>
-  <li v-for="(object, index) in randomObjectsRef" :key="index">{{object.title}}</li>
+<h3>Random Selections:</h3>
+<ul v-if="store.loaded">
+  <li v-for="(object, index) in randomObjectsRef" :key="index">
+  <div class="art-preview">
+    <img :src="object.primaryImageSmall" :alt="object.title"/>
+  <h5>"{{object.title}}"</h5>
+    <h5 v-if="object.artistDisplayName !== ''">"{{object.artistDisplayName}}"</h5>
+
+  </div>
+
+  </li>
   
-  </ol>
+  </ul>
+  
 
 
 </div>
@@ -53,3 +59,20 @@ onMounted(()=>{
 })
 
 </script>
+
+<style lang="scss" scoped>
+
+ul {
+  display: flex;
+}
+
+img {
+  width: 250px;
+}
+
+.art-preview {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+</style>

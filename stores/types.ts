@@ -3,6 +3,7 @@ export type SiteStore = {
     "metObjectIds": any[],
     "objectsTotal": number,
     'randomObjects': object[],
-    'config': object
+    'config': object,
+    'loaded': boolean
   }
   
