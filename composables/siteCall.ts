@@ -1,5 +1,8 @@
-export async function useSiteCall () {
+import { useRuntimeConfig } from '#imports'
 
 
-    return "SITE CALL SITE CALL SITE CALL"
+export async function useGetConfig () {
+
+const config = useRuntimeConfig()
+    return config
 }

@@ -2,10 +2,10 @@ import eslintPlugin from 'vite-plugin-eslint'
 import StylelintPlugin from 'vite-plugin-stylelint'
 
 const publicRuntimeConfig = {
-
-metObjects: 'https://collectionapi.metmuseum.org/public/collection/v1/objects',
-metDepartments: 'https://collectionapi.metmuseum.org/public/collection/v1/departments',
-metSearch: 'https://collectionapi.metmuseum.org/public/collection/v1/search'
+  apiBase: 'https://collectionapi.metmuseum.org/public/collection',
+metObjectsPath: '/v1/objects',
+metDepartmentsPath: '/v1/departments',
+metSearchPath: '/v1/search'
 }
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -27,6 +27,9 @@ export default defineNuxtConfig({
     
     },
   css: ['assets/styles/main.scss'],
+  modules: [
+    '@pinia/nuxt',
+  ],
   devtools: { enabled: true },
   devServer: {
     port: 3001,
@@ -62,6 +65,7 @@ export default defineNuxtConfig({
   },
   // Runtime Configuration: https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
   runtimeConfig: {
+    configSecret: "Ich liebe Filiz",
     public: publicRuntimeConfig
   },
 
