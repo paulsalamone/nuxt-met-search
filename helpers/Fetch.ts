@@ -7,9 +7,8 @@ export async function fetchMetObjects(base: string, objectsUrl: string) {
 
   try {
     const json = await $fetch(url);
-    console.log("OBJECTS JSON: ", json)
     if(json){
-      console.log("+++ JSON IST DA")
+      console.log("+++ metObjects fetched!")
     }
     return json;
   } catch (error) {
@@ -35,7 +34,7 @@ export async function fetchSingleMetObject(base: string, path: string, metObject
     do {
       const url = `${base}${path}/${getRandomId(metObjectIds)}`;
       json = await fetch(url).then((response) => response.json());
-
+      console.log('got met object')
       hasPrimarySmallImage = json.primaryImageSmall && json.primaryImageSmall !== '';
     } while (!hasPrimarySmallImage);
 

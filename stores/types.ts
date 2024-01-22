@@ -4,6 +4,7 @@ export type SiteStore = {
     "objectsTotal": number,
     'randomObjects': object[],
     'config': object,
-    'loaded': boolean
+    'loaded': boolean,
+    'hasRandomArt': boolean
   }
   

@@ -10,24 +10,29 @@ export const useSiteStore = defineStore('site', {
     objectsTotal: 0,
     randomObjects: [],
     config: useRuntimeConfig(),
-    loaded: false
+    loaded: false,
+    hasRandomArt: false
   }),
   actions: {
     async fetchMetObjects(base: string, objectsUrl: string) {
-      try {
-        const response = await fetchMetObjectsHelper(base, objectsUrl);
-        this.metObjectIds = response.objectIDs;
-        this.objectsTotal = response.total;
 
-        if (this.metObjectIds && Array.isArray(this.metObjectIds) && this.metObjectIds.length > 0) {
-        await this.getRandomObjects(3); // Assuming getRandomObjects is properly updated to work with objectIDs array.
-      }
-
-      } catch (error) {
-        console.error('SITE STORE: Error fetching objects', error);
-      }
-
-      return this.metObjectIds
+      if(!this.hasRandomArt){
+        try {
+          const response = await fetchMetObjectsHelper(base, objectsUrl);
+          this.metObjectIds = response.objectIDs;
+          this.objectsTotal = response.total;
+  
+          if (this.metObjectIds && Array.isArray(this.metObjectIds) && this.metObjectIds.length > 0) {
+          await this.getRandomObjects(3); // Assuming getRandomObjects is properly updated to work with objectIDs array.
+        }
+  
+        } catch (error) {
+          console.error('SITE STORE: Error fetching objects', error);
+        }
+  
+        return this.metObjectIds
+      } 
+ 
     },
     async getRandomObjects(arrayLength: number) {
    
@@ -60,6 +65,23 @@ export const useSiteStore = defineStore('site', {
 
           if(this.randomObjects.length === 3){
             this.loaded = true
+
+            // TODO: push to local storage
+            this.hasRandomArt = true
+
+            const serializedObj = JSON.stringify(this.randomObjects);
+            // Store the serialized object string into local storage with the specified key
+
+            // console.log('serializedObj', serializedObj)
+
+            // console.log('typeof window !== "undefined"', typeof window !== "undefined")
+
+              // console.log('saving')
+              // localStorage.setItem("savedRandomArt", serializedObj);
+         
+
+
+
           }
       }
 

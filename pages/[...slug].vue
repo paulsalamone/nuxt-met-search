@@ -1,14 +1,18 @@
 <template>
 <div>
   <p>PAGE: {{ $route.params.slug ? $route.params.slug : "index" }}</p>
-
+  <p>store.hasRandomArt: {{ store.hasRandomArt }}</p>
+<p>rand ob l: {{ store.randomObjects.length }}</p>
 <h3>Random Selections:</h3>
+
 <ul v-if="store.loaded">
+<!-- eventually make these a Cx_swiper?! -->
+
   <li v-for="(object, index) in randomObjectsRef" :key="index">
   <div class="art-preview">
     <img :src="object.primaryImageSmall" :alt="object.title"/>
-  <h5>"{{object.title}}"</h5>
-    <h5 v-if="object.artistDisplayName !== ''">"{{object.artistDisplayName}}"</h5>
+  <h6>"{{object.title}}"</h6>
+    <p v-if="object.artistDisplayName !== ''">{{object.artistDisplayName}}</p>
 
   </div>
 
@@ -16,7 +20,9 @@
   
   </ul>
   
-
+  <ul>
+  <!-- <CeThumbnail v-for="(artwork, index) in randomObjectsRef" :key="index" :artwork="artwork"/> -->
+</ul>
 
 </div>
 </template>
@@ -34,15 +40,10 @@ const store = useSiteStore()
 
   useAsyncData('objects', () => store.fetchMetObjects(apiBase, metObjectsPath))
 
-const metObjectsRef = ref(null)
 
 const randomObjectsRef = ref(null)
 
-const updatedRandomObjectsRef = ref(store.updatedRandomObjects)
-watch(randomObjectsRef, (val) => {
-  console.log('randomObjectsRef val:', val)
-  
-})
+
 
 onMounted(()=>{
   if (typeof window === 'undefined') {
@@ -52,8 +53,18 @@ onMounted(()=>{
       // This is the client
       console.log('Running on the client');
 
-      metObjectsRef.value = store.metObjects
-      randomObjectsRef.value = store.randomObjects
+// TODO 
+    if(!store.hasRandomArt){
+      randomObjectsRef.value = store.randomObjects;
+      const serializedObj = JSON.stringify(randomObjectsRef.value);
+      localStorage.setItem("savedRandomArt", serializedObj);
+
+    } else {
+      console.log('getting random art from LS')
+      randomObjectsRef.value = JSON.parse(localStorage.getItem("savedRandomArt"));
+
+    }
+      
     
     }
 })
@@ -66,13 +77,5 @@ ul {
   display: flex;
 }
 
-img {
-  width: 250px;
-}
 
-.art-preview {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-}
 </style>
