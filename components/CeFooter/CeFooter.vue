@@ -11,8 +11,9 @@ footer {
 bottom: 0;
 text-align: center;
 background-color: $c-gray;
-// padding: $spacer-50;
+padding: $spacer-10;
 width: 100%;
 height: 50px;
+margin-top: $spacer-25;
 }
 </style>

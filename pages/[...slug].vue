@@ -1,9 +1,7 @@
 <template>
 <div>
-  <p>PAGE: {{ $route.params.slug ? $route.params.slug : "index" }}</p>
-  <p>store.hasRandomArt: {{ store.hasRandomArt }}</p>
-<p>rand ob l: {{ store.randomObjects.length }}</p>
-<h3>Random Selections:</h3>
+
+<h4>Random selections from the archive:</h4>
 
 <ul v-if="store.loaded">
 <!-- eventually make these a Cx_swiper?! -->
@@ -77,5 +75,9 @@ ul {
   display: flex;
 }
 
+h4 {
+  text-align: center;
+  margin-bottom: $spacer-25;
+}
 
 </style>
